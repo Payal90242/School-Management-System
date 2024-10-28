@@ -1,0 +1,132 @@
+#include<iostream>
+#include<vector>
+#include<string>
+using namespace std;
+class Student
+ {
+ public:
+ int id;
+ string name;
+ int age;
+ string grade;
+ Student(int sid,string sname,int sage, string sgrade)
+ {
+  id=sid;
+  name=sname;
+  age=sage;
+  grade=sgrade;
+ }
+ void display()
+ {
+ cout<<"Student ID:"<<id<<"\nName:"<<name<<"\nAge:"<<age<<"\nGrade:"<<grade<<endl;
+ }
+};
+class Teacher
+ {
+ public:
+ int id;
+ string name;
+ string subject;
+ Teacher(int tid,string tname, string tsubject)
+ {
+  id=tid;
+  name=tname;
+  subject=tsubject;
+ }
+ void display()
+ {
+ cout<<"Teacher ID:"<<id<<"\nName:"<<name<<"\nSubject:"<<subject<<endl;
+ }
+};
+class SchoolManagementSystem
+{
+ public:
+ vector<Student>students;
+ vector<Teacher>teachers;
+ void addStudent(int id,string name,int age, string grade)
+{
+  students.push_back(Student(id,name,age,grade));
+}
+void addTeacher(int id,string name, string subject)
+{
+ teachers.push_back(Teacher(id,name,subject));
+}
+ void displayStudents()
+ {
+  for(Student& s:students)
+  {
+   s.display();
+   cout<<"-------------------"<<endl;
+  }
+ }
+ void displayTeachers()
+ {
+  for(Teacher& t:teachers)
+  {
+   t.display();
+   cout<<"-------------------"<<endl;
+  }
+ }
+};
+int main()
+{
+                              system("cls");
+SchoolManagementSystem sms;
+int choice;
+do
+{
+   cout<<"-----School Mangement System----\n";
+   cout<<"1.Add Student\n2. Add Teacher\n3.Display Students\n4.Display Teachers\n5.Exit\n";
+   cout<<"Enter your choice:";
+   cin>>choice;
+   switch(choice)
+   {
+     case 1:
+     {
+      int id,age;
+      string name,grade;
+      cout<<"Enter Student ID:";
+      cin>>id;
+      cout<<"Enter Student Name:";
+      cin>>name;
+      cout<<"Enter Student Age:";
+      cin>>age;
+      cout<<"Enter Student Grade:";
+      cin>>grade;
+      sms.addStudent(id,name,age,grade);
+      break;
+     }
+     case 2:
+     {
+       int id;
+      string name,subject;
+      cout<<"Enter Teacher ID:";
+      cin>>id;
+      cout<<"Enter Teacher Name:";
+      cin>>name;
+      cout<<"Enter Teacher Subject:";
+      cin>>subject;
+      sms.addTeacher(id,name,subject);
+      break;
+     }
+     case 3:
+     sms.displayStudents();
+     break;
+      case 4:
+     sms.displayTeachers();
+     break;
+      case 5:
+     cout<<"Exiting...\n";
+     break;
+     default:
+     cout<<"Invalid choice,try again.\n";
+   }                          
+} 
+while (choice!=5);
+return 0;
+}
+
+
+
+
+
